@@ -1,10 +1,6 @@
-export default function NoteCard({ nota, onEdit, onDelete }) {
-  const handleDelete = () => {
-    if (window.confirm('Ești sigur că vrei să ștergi această notiță?')) {
-      onDelete(nota.id);
-    }
-  };
+'use client';
 
+export default function NoteCard({ nota }) {
   return (
     <div className="note-card">
       <div className="note-header">
@@ -13,12 +9,8 @@ export default function NoteCard({ nota, onEdit, onDelete }) {
       </div>
       <p className="note-content">{nota.continut}</p>
       {nota.dataNotificare && (
-        <p className="note-date">🔔 {nota.dataNotificare}</p>
+        <p className="note-date">{String.fromCodePoint(0x1F514)} {nota.dataNotificare}</p>
       )}
-      <div className="note-actions">
-        <button className="btn-edit" onClick={() => onEdit(nota)}>Editează</button>
-        <button className="btn-delete" onClick={handleDelete}>Șterge</button>
-      </div>
     </div>
   );
 }
